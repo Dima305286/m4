@@ -12,8 +12,8 @@ let questions = [
   },
   {
     question: "22+2",
-    correct: 4,
-    answers: [4, 5, 10,24, 33],
+    correct: 24,
+    answers: [4, 5, 10, 24, 33],
   },
 ];
 
@@ -21,30 +21,41 @@ function startProgramm() {
   start.classList.add("close");
   main.classList.remove("close");
   result.classList.add("close");
-  generate()
+  generate();
 }
-
 
 start.addEventListener("click", startProgramm);
 
 function generate() {
-    let question = questions[current].question;
-    main.innerHTML = `<h2 class="title">${question}</h2>`;
+  let question = questions[current].question;
+  main.innerHTML = `<h2 class="title">${question}</h2>`;
 
-    let answers = questions[current].answers;
-    let block = "";
-    for (let i of answers) {
-        block += `<button class="btn" onclick="check('${i}')">${i}</button>`;
-    }
+  let answers = questions[current].answers;
+  let block = "";
+  for (let i of answers) {
+    block += `<button class="btn" onclick="check('${i}')">${i}</button>`;
+  }
 
-    main.innerHTML += `<nav>${block}</nav>`;
+  main.innerHTML += `<nav>${block}</nav>`;
 }
 
 function check(answer) {
-    correct = questions[current].correct;
-    if (current == answer){
-        count += 1;
-    }
-    current += 1;
+  correct = questions[current].correct;
+  if (correct == answer) {
+    count += 1;
+  }
+  current += 1;
+  if (questions.length > current) {
     generate();
+  } else {
+    stop();
+  }
+}
+function stop() {
+  start.classList.remove("close");
+  main.classList.add("close");
+  result.classList.remove("close");
+  result.innerHTML = `Решено ${count} из ${questions.length}`;
+  current = 0;
+  count = 0;
 }

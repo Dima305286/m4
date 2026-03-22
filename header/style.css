@@ -12,7 +12,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(255, 0, 157);
+    background-color: #ff009d;
     color: rgb(0, 0, 0);
     font-size: 30px;
     padding: 20px;
@@ -42,7 +42,7 @@ a{
     #menu{
         position: absolute;
         flex-direction: column;
-        background: blue;
+        background: #ff009d;
         top: 100%;
         right: 0%;
         transition: all 0.5s;

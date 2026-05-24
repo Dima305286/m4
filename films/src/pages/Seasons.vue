@@ -2,18 +2,14 @@
 import CardSeasons from "../components/CardSeasons.vue";
 import { onMounted, ref } from "vue";
 
-let cards = ref([
-  {
-    img: "",
-    title: "заголовок",
-    desc: "описание",
-  },
-  {
-    img: "",
-    title: "заголовок",
-    desc: "описание",
-  },
-]);
+let cards = ref([]);
+
+async function GetData(){
+  let data = await fetch("https://acd05b4e4a8e59ff.mokky.dev/seasons")
+  cards.value = await data.json()
+}
+
+onMounted(GetData)
 </script>
 
 <template>
